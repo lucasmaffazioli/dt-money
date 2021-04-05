@@ -8,10 +8,9 @@ export const GlobalStyle = createGlobalStyle`
 	
 	--blue-light: #6933FF;
 	
-	--text-title: #363FF;
-	--text-body: 969CB3;
+	--text-title: #363F5F;
+	--text-body: #969CB3;
 	
-	--background: #F0F2F5;
 	--shape: #FFFFFF;
 }
 
@@ -37,15 +36,19 @@ export const GlobalStyle = createGlobalStyle`
 	
 	body, input, textarea, button{ // Input, textarea e button não herdam do body
 		font-family: 'Poppins', sans-serif;
+	}
+	
+	body, input, textarea{ // Input, textarea e button não herdam do body
 		font-weight: 400;
 	}
 	
-	h1, h2, h3, h4, h5, h6, strong {
+	h1, h2, h3, h4, h5, h6, strong, button {
 		font-weight: 600;
 	}
 	
 	button{
 		cursor: pointer;
+		font-size: 1rem;
 	}
 	
 	[disabled]{
