@@ -34,7 +34,7 @@ function App() {
   return (
 
     <div className="App">
-      <Header></Header>
+      <Header handleOpenTransactionModal={handleOpenTransactionModal} ></Header>
       <Summary></Summary>
 
       <Modal
