@@ -1,11 +1,10 @@
 import { createServer } from 'miragejs';
-import React from 'react';
 import { Header } from './components/Header/';
 import { Summary } from './components/Summary/';
 import { Transaction } from './components/transaction';
+import { NewTransactionModal } from './components/NewTransactionModal';
 import { GlobalStyle } from './styles/global'
 import { useState } from 'react';
-import Modal from 'react-modal';
 
 function App() {
   createServer({
@@ -37,15 +36,9 @@ function App() {
       <Header handleOpenTransactionModal={handleOpenTransactionModal} ></Header>
       <Summary></Summary>
 
-      <Modal
-        isOpen={isNewTransactionModalOpen}
-        onRequestClose={handleCloseTransactionModal}
-      >
-        <h2>Sou um modal</h2>
+      <NewTransactionModal isOpen={isNewTransactionModalOpen} onTransactionClose={handleCloseTransactionModal}></NewTransactionModal>
 
-      </Modal>
-
-      <Transaction></Transaction>
+      <Transaction ></Transaction>
       <GlobalStyle />
     </div>
   );
