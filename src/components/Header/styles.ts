@@ -20,11 +20,6 @@ export const Content = styled.div`
 		padding: 0 2rem;
 		height: 3rem;
 		border-radius: 0.3rem;
-		
-		&:hover{
-			filter: brightness(0.9);
-			transition: all 0.2s;
-		}
 	}
 `
 

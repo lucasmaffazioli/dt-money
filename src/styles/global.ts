@@ -50,10 +50,53 @@ export const GlobalStyle = createGlobalStyle`
 	button{
 		cursor: pointer;
 		font-size: 1rem;
+		&:hover{
+			filter: brightness(0.9);
+			transition: all 0.2s;
+		}
 	}
 	
 	[disabled]{
 		opacity: 0.6;
 		cursor: not-allowed;
+	}
+	
+	.react-modal-overlay{
+		position: fixed;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		display:flex;
+		
+		justify-content: center;
+		align-items: center;
+		background: rgba(0,0,0,0.5)
+		
+	}
+	
+	.react-modal-content{
+		position: relative;
+		background: var(--background);
+		height: fit-content;
+		padding: 2.5rem;
+		border-radius: 0.25rem;
+		
+		width: 100%;
+		max-width: 576px;
+		
+		.closeModal{
+			cursor: pointer;
+			padding: 0.5rem;
+			border: 0 none;
+			position: absolute;
+			top: 1rem;
+			right: 1rem;
+			
+			transition: all 0.2s;
+			&:hover{
+				filter: brightness(0.7);
+			}
+		}
 	}
 `

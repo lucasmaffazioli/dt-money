@@ -20,6 +20,7 @@ export function Transaction() {
 					<tr>
 						<th>Nome</th>
 						<th>Valor</th>
+						<th>Categoria</th>
 						<th>Data</th>
 					</tr>
 				</thead>
@@ -27,11 +28,19 @@ export function Transaction() {
 					<tr>
 						<td>Website</td>
 						<td className="deposit">+ R$5000</td>
-						<td>20/05/21</td>
+						<td>Salário</td>
+						<td>10/05/21</td>
 					</tr>
 					<tr>
-						<td>Website</td>
+						<td>Mercado</td>
+						<td className="withdraw">- R$300</td>
+						<td>Casa</td>
+						<td>18/05/21</td>
+					</tr>
+					<tr>
+						<td>Alugel</td>
 						<td className="withdraw">- R$2500</td>
+						<td>Casa</td>
 						<td>20/05/21</td>
 					</tr>
 				</tbody>
