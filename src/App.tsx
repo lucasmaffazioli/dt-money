@@ -1,7 +1,7 @@
 import { createServer } from 'miragejs';
 import { Header } from './components/Header/';
 import { Summary } from './components/Summary/';
-import { Transaction } from './components/transaction';
+import { Transaction } from './components/Transaction';
 import { NewTransactionModal } from './components/NewTransactionModal';
 import { GlobalStyle } from './styles/global'
 import { useState } from 'react';
