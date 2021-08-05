@@ -1,47 +1,83 @@
-import { createServer } from 'miragejs';
-import { Header } from './components/Header/';
-import { Summary } from './components/Summary/';
-import { Transaction } from './components/Transaction';
-import { NewTransactionModal } from './components/NewTransactionModal';
-import { GlobalStyle } from './styles/global'
-import { useState } from 'react';
+import { createServer, Model } from "miragejs";
+import { Header } from "./components/Header/";
+import { Summary } from "./components/Summary/";
+import { Transaction } from "./components/Transaction";
+import { NewTransactionModal } from "./components/NewTransactionModal";
+import { GlobalStyle } from "./styles/global";
+import { useState } from "react";
 
 function App() {
-  createServer({
-    routes() {
-      this.namespace = 'api';
-      this.get("/transactions", () => ({
-        reminders: [
-          { id: 1, text: "Walk the dog" },
-          { id: 2, text: "Take out the trash" },
-          { id: 3, text: "Work out" },
-        ],
-      }))
-    },
-  });
+	createServer({
+		models: {
+			transaction: Model,
+		},
 
-  const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(false);
+		seeds(server) {
+			server.db.loadData({
+				transactions: [
+					{
+						name: "Freelance website",
+						value: 5000,
+						category: "Salário",
+						type: "deposit",
+						createdAt: new Date("2021-08-03 05:05:00"),
+					},
+					{
+						name: "Aluguel",
+						value: 1100,
+						category: "Casa",
+						type: "withdraw",
+						createdAt: new Date("2021-08-05 21:05:12"),
+					},
+				],
+			});
+		},
 
-  function handleOpenTransactionModal() {
-    setIsNewTransactionModalOpen(true);
-  };
+		routes() {
+			this.namespace = "api";
+			this.get("/transactions", (schema, request) => {
+				return this.schema.all("transaction");
+			});
+			// this.get("/transactions", (schema, request) => {
+			// 	return [
+			// 		{ id: 2, name: "Take out the trash" },
+			// 		{ id: 3, name: "Work out" },
+			// 	];
+			// });
 
-  function handleCloseTransactionModal() {
-    setIsNewTransactionModalOpen(false);
-  };
+			this.post("/transactions", (schema, request) => {
+				const data = JSON.parse(request.requestBody);
 
-  return (
+				return schema.create("transaction", data);
+			});
+		},
+	});
 
-    <div className="App">
-      <Header handleOpenTransactionModal={handleOpenTransactionModal} ></Header>
-      <Summary></Summary>
+	const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] =
+		useState(false);
 
-      <NewTransactionModal isOpen={isNewTransactionModalOpen} onTransactionClose={handleCloseTransactionModal}></NewTransactionModal>
+	function handleOpenTransactionModal() {
+		setIsNewTransactionModalOpen(true);
+	}
 
-      <Transaction ></Transaction>
-      <GlobalStyle />
-    </div>
-  );
+	function handleCloseTransactionModal() {
+		setIsNewTransactionModalOpen(false);
+	}
+
+	return (
+		<div className="App">
+			<Header handleOpenTransactionModal={handleOpenTransactionModal}></Header>
+			<Summary></Summary>
+
+			<NewTransactionModal
+				isOpen={isNewTransactionModalOpen}
+				onTransactionClose={handleCloseTransactionModal}
+			></NewTransactionModal>
+
+			<Transaction></Transaction>
+			<GlobalStyle />
+		</div>
+	);
 }
 
 export default App;

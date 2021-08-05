@@ -4,6 +4,7 @@ import buttonCloseImg from "../../assets/close.svg";
 import incomeImg from "../../assets/income.svg";
 import outcomeImg from "../../assets/outcome.svg";
 import { FormEvent, useState } from "react";
+import { api } from "../../services/api";
 
 Modal.setAppElement("#root");
 
@@ -12,9 +13,6 @@ interface NewTransactionModalProps {
 	onTransactionClose: () => void;
 }
 
-function handleSubmit(event: FormEvent) {
-	event.preventDefault();
-}
 export function NewTransactionModal({
 	isOpen,
 	onTransactionClose,
@@ -24,7 +22,14 @@ export function NewTransactionModal({
 	const [name, setName] = useState("");
 	const [category, setCategory] = useState("");
 
-	console.log({ type, value, name, category });
+	function handleSubmit(event: FormEvent) {
+		event.preventDefault();
+		// console.log({ type, value, name, category });
+
+		const data = { type, value, name, category };
+
+		api.post("/transactions", data);
+	}
 
 	return (
 		<Modal
