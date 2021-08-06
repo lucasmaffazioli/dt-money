@@ -4,27 +4,6 @@ import { Container } from "./styles";
 
 export function TransactionsTable() {
 	const transactions = useContext(TransactionsContext);
-	// const [transactions, setTransactions] = useState<Transaction[]>([]);
-
-	// useEffect(() => {
-	// 	setTransactions(useContext(TransactionsContext));
-	// 	// api.get("transactions").then((result) => {
-	// 	// 	console.log("Getting transactions:");
-	// 	// 	console.log(result.data);
-
-	// 	// 	setTransactions(result.data.transactions);
-	// 	// 	// setTransactions(
-	// 	// 	// 	result.data.transactions.map((transaction: Transaction) => (
-	// 	// 	// 		<tr>
-	// 	// 	// 			<td>{transaction.name}</td>
-	// 	// 	// 			<td className="deposit">+ R${transaction.value.toString()}</td>
-	// 	// 	// 			<td>{transaction.category}</td>
-	// 	// 	// 			<td>10/05/21</td>
-	// 	// 	// 		</tr>
-	// 	// 	// 	))
-	// 	// 	// );
-	// 	// });
-	// }, []);
 
 	return (
 		<div>
@@ -44,7 +23,7 @@ export function TransactionsTable() {
 							<tr key={transaction.id}>
 								<td>{transaction.name}</td>
 								<td className={transaction.type}>
-									+ R$
+									+{" "}
 									{Intl.NumberFormat("pt-BR", {
 										style: "currency",
 										currency: "BRL",

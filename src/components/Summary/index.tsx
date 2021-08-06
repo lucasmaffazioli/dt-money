@@ -2,11 +2,18 @@ import { useContext } from "react";
 import entradaImg from "../../assets/income.svg";
 import saidaImg from "../../assets/outcome.svg";
 import totalImg from "../../assets/total.svg";
-import { TransactionsContext } from "../../TransactionsContext";
+import { Transaction, TransactionsContext } from "../../TransactionsContext";
 import { Container } from "./styles";
 
 export function Summary() {
-	const data = useContext(TransactionsContext);
+	const transactions = useContext(TransactionsContext);
+	var totalEntrada = 0;
+	var totalSaida = 0;
+
+	transactions.forEach((transaction: Transaction) => {
+		if (transaction.type === "deposit") totalEntrada += transaction.value;
+		if (transaction.type === "withdraw") totalSaida += transaction.value;
+	});
 
 	return (
 		<>
@@ -14,17 +21,32 @@ export function Summary() {
 				<div>
 					<p>Entradas</p>
 					<img src={entradaImg} alt="Entrada" />
-					<strong>R$ 17.000,00</strong>
+					<strong>
+						{Intl.NumberFormat("pt-BR", {
+							style: "currency",
+							currency: "BRL",
+						}).format(totalEntrada)}
+					</strong>
 				</div>
 				<div>
 					<p>Saídas</p>
 					<img src={saidaImg} alt="Saída" />
-					<strong>R$ 17.000,00</strong>
+					<strong>
+						{Intl.NumberFormat("pt-BR", {
+							style: "currency",
+							currency: "BRL",
+						}).format(totalSaida)}
+					</strong>
 				</div>
 				<div className="totalShape">
 					<p>Total</p>
 					<img src={totalImg} alt="Total" />
-					<strong>R$ 17.000,00</strong>
+					<strong>
+						{Intl.NumberFormat("pt-BR", {
+							style: "currency",
+							currency: "BRL",
+						}).format(totalEntrada - totalSaida)}
+					</strong>
 				</div>
 			</Container>
 		</>
