@@ -1,10 +1,12 @@
 import { createServer, Model } from "miragejs";
 import { Header } from "./components/Header/";
 import { Summary } from "./components/Summary/";
-import { Transaction } from "./components/Transaction";
+import { TransactionsTable } from "./components/TransactionsTable";
 import { NewTransactionModal } from "./components/NewTransactionModal";
 import { GlobalStyle } from "./styles/global";
 import { useState } from "react";
+import { TransactionProvider } from "./TransactionsContext";
+// import { TransactionsContext } from "./TransactionsContext";
 
 function App() {
 	createServer({
@@ -65,18 +67,18 @@ function App() {
 	}
 
 	return (
-		<div className="App">
+		<TransactionProvider>
 			<Header handleOpenTransactionModal={handleOpenTransactionModal}></Header>
 			<Summary></Summary>
 
 			<NewTransactionModal
 				isOpen={isNewTransactionModalOpen}
 				onTransactionClose={handleCloseTransactionModal}
-			></NewTransactionModal>
+			/>
 
-			<Transaction></Transaction>
+			<TransactionsTable></TransactionsTable>
 			<GlobalStyle />
-		</div>
+		</TransactionProvider>
 	);
 }
 

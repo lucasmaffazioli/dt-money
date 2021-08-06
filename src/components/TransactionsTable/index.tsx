@@ -1,37 +1,30 @@
-import { useEffect, useState } from "react";
-import { api } from "../../services/api";
+import { useContext } from "react";
+import { TransactionsContext } from "../../TransactionsContext";
 import { Container } from "./styles";
 
-interface Transaction {
-	id: number;
-	name: string;
-	type: string;
-	category: string;
-	value: number;
-	createdAt: string;
-}
+export function TransactionsTable() {
+	const transactions = useContext(TransactionsContext);
+	// const [transactions, setTransactions] = useState<Transaction[]>([]);
 
-export function Transaction() {
-	const [transactions, setTransactions] = useState<Transaction[]>([]);
+	// useEffect(() => {
+	// 	setTransactions(useContext(TransactionsContext));
+	// 	// api.get("transactions").then((result) => {
+	// 	// 	console.log("Getting transactions:");
+	// 	// 	console.log(result.data);
 
-	useEffect(() => {
-		api.get("transactions").then((result) => {
-			console.log("Getting transactions:");
-			console.log(result.data);
-
-			setTransactions(result.data.transactions);
-			// setTransactions(
-			// 	result.data.transactions.map((transaction: Transaction) => (
-			// 		<tr>
-			// 			<td>{transaction.name}</td>
-			// 			<td className="deposit">+ R${transaction.value.toString()}</td>
-			// 			<td>{transaction.category}</td>
-			// 			<td>10/05/21</td>
-			// 		</tr>
-			// 	))
-			// );
-		});
-	}, []);
+	// 	// 	setTransactions(result.data.transactions);
+	// 	// 	// setTransactions(
+	// 	// 	// 	result.data.transactions.map((transaction: Transaction) => (
+	// 	// 	// 		<tr>
+	// 	// 	// 			<td>{transaction.name}</td>
+	// 	// 	// 			<td className="deposit">+ R${transaction.value.toString()}</td>
+	// 	// 	// 			<td>{transaction.category}</td>
+	// 	// 	// 			<td>10/05/21</td>
+	// 	// 	// 		</tr>
+	// 	// 	// 	))
+	// 	// 	// );
+	// 	// });
+	// }, []);
 
 	return (
 		<div>
