@@ -5,8 +5,7 @@ import { TransactionsTable } from "./components/TransactionsTable";
 import { NewTransactionModal } from "./components/NewTransactionModal";
 import { GlobalStyle } from "./styles/global";
 import { useState } from "react";
-import { TransactionsProvider } from "./TransactionsContext";
-// import { TransactionsContext } from "./TransactionsContext";
+import { TransactionsProvider } from "./useTransaction";
 
 function App() {
 	createServer({
@@ -73,7 +72,7 @@ function App() {
 
 			<NewTransactionModal
 				isOpen={isNewTransactionModalOpen}
-				onTransactionClose={handleCloseTransactionModal}
+				onRequestClose={handleCloseTransactionModal}
 			/>
 
 			<TransactionsTable></TransactionsTable>
