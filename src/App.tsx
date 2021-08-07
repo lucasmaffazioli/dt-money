@@ -5,7 +5,7 @@ import { TransactionsTable } from "./components/TransactionsTable";
 import { NewTransactionModal } from "./components/NewTransactionModal";
 import { GlobalStyle } from "./styles/global";
 import { useState } from "react";
-import { TransactionProvider } from "./TransactionsContext";
+import { TransactionsProvider } from "./TransactionsContext";
 // import { TransactionsContext } from "./TransactionsContext";
 
 function App() {
@@ -67,7 +67,7 @@ function App() {
 	}
 
 	return (
-		<TransactionProvider>
+		<TransactionsProvider>
 			<Header handleOpenTransactionModal={handleOpenTransactionModal}></Header>
 			<Summary></Summary>
 
@@ -78,7 +78,7 @@ function App() {
 
 			<TransactionsTable></TransactionsTable>
 			<GlobalStyle />
-		</TransactionProvider>
+		</TransactionsProvider>
 	);
 }
 
