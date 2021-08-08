@@ -37,6 +37,17 @@ export const Container = styled.div`
 		&.deposit{
 			color: var(--green)
 		}
+		
+		& .button{
+			/* background: red; */
+			/* color:var(--redButton); */
+			filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(320deg) brightness(90%) contrast(100%);
+			cursor: pointer;
+			&:hover{
+				filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(320deg) brightness(70%) contrast(100%);
+				transition: all 0.2s;
+			}
+		}
 	}
 `
 

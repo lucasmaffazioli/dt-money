@@ -36,8 +36,8 @@ function App() {
 
 		routes() {
 			this.namespace = "api";
-			this.get("/transactions", (schema, request) => {
-				return this.schema.all("transaction");
+			this.get("/transactions", (schema) => {
+				return schema.all("transaction");
 			});
 
 			this.post("/transactions", (schema, request) => {
