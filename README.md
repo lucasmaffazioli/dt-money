@@ -1,5 +1,6 @@
 # DT Money
 
-<video height="600" muted autoplay controls>
-    <source src="docs/dtmoney_preview.mp4" type="video/mp4">
-</video>
+React responsive application with MirageJs to simulate an API.
+
+https://user-images.githubusercontent.com/12513049/128628871-39881597-5cff-4423-82a6-15096fcb9ecd.mp4
+
