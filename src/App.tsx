@@ -13,38 +13,32 @@ function App() {
 			transaction: Model,
 		},
 
-		seeds(server) {
-			server.db.loadData({
-				transactions: [
-					{
-						name: "Freelance website",
-						value: 5000,
-						category: "Salário",
-						type: "deposit",
-						createdAt: new Date("2021-08-03 05:05:00"),
-					},
-					{
-						name: "Aluguel",
-						value: 1100,
-						category: "Casa",
-						type: "withdraw",
-						createdAt: new Date("2021-08-05 21:05:12"),
-					},
-				],
-			});
-		},
+		// seeds(server) {
+		// 	server.db.loadData({
+		// 		transactions: [
+		// 			{
+		// 				name: "Freelance website",
+		// 				value: 5000,
+		// 				category: "Salário",
+		// 				type: "deposit",
+		// 				createdAt: new Date("2021-08-03 05:05:00"),
+		// 			},
+		// 			{
+		// 				name: "Aluguel",
+		// 				value: 1100,
+		// 				category: "Casa",
+		// 				type: "withdraw",
+		// 				createdAt: new Date("2021-08-05 21:05:12"),
+		// 			},
+		// 		],
+		// 	});
+		// },
 
 		routes() {
 			this.namespace = "api";
 			this.get("/transactions", (schema, request) => {
 				return this.schema.all("transaction");
 			});
-			// this.get("/transactions", (schema, request) => {
-			// 	return [
-			// 		{ id: 2, name: "Take out the trash" },
-			// 		{ id: 3, name: "Work out" },
-			// 	];
-			// });
 
 			this.post("/transactions", (schema, request) => {
 				const data = JSON.parse(request.requestBody);

@@ -77,8 +77,8 @@ export function NewTransactionModal({
 						<span>Entrada</span>
 					</RadioBox>
 					<RadioBox
-						onClick={() => setType("withdrawn")}
-						isActive={type === "withdrawn" ? true : false}
+						onClick={() => setType("withdraw")}
+						isActive={type === "withdraw" ? true : false}
 						type="button"
 						activeColor="red"
 					>
