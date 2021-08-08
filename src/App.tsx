@@ -43,12 +43,13 @@ function App() {
 				this.get("/transactions", (schema) => {
 					return schema.all("transaction");
 				});
-
 				this.post("/transactions", (schema, request) => {
 					const data = JSON.parse(request.requestBody);
 
 					return schema.create("transaction", data);
 				});
+
+				this.del("/transactions/:id");
 			},
 		});
 	}, []);

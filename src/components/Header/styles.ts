@@ -14,6 +14,9 @@ export const Content = styled.div`
 	justify-content: space-between;
 	
 	button{
+		@media (max-width: 768px) {
+			padding: 0 1rem;
+		}
 		color: var(--shape);
 		background: var(--blue-light);
 		border: 0;

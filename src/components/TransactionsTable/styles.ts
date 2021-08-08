@@ -1,9 +1,14 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+	@media (max-width: 768px) {
+		padding: 0 0;
+	}
+
+	overflow-x: auto;
 	max-width: 1128px;
 	margin: 0 auto;
-	padding: 0rem 1rem 10rem;
+	padding: 0rem 1rem;
 	
 	
 	table{

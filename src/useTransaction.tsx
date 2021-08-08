@@ -31,8 +31,8 @@ export function TransactionsProvider(props: TransactionsProviderProps) {
 
 	useEffect(() => {
 		api.get("transactions").then((result) => {
-			console.log("Getting transactions context:");
-			console.log(result.data);
+			// console.log("Getting transactions context:");
+			// console.log(result.data);
 
 			setTransactions(result.data.transactions);
 		});
@@ -45,17 +45,12 @@ export function TransactionsProvider(props: TransactionsProviderProps) {
 		});
 		const { transaction } = response.data;
 
-		console.log("transactionInput:");
-		console.log(transactionInput);
-
 		setTransactions([...transactions, transaction]);
 	}
 
 	async function deleteTransaction(id: number) {
 		await api.delete("/transactions/" + id.toString());
-		// const { transaction } = response.data;
-
-		const newTransactions = transactions.filter((el) => el.id === id);
+		const newTransactions = transactions.filter((el) => el.id !== id);
 
 		setTransactions(newTransactions);
 	}
