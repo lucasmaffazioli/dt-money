@@ -6,47 +6,52 @@ import { NewTransactionModal } from "./components/NewTransactionModal";
 import { GlobalStyle } from "./styles/global";
 import { useState } from "react";
 import { TransactionsProvider } from "./useTransaction";
+import { useEffect } from "react";
 
 function App() {
-	createServer({
-		models: {
-			transaction: Model,
-		},
+	useEffect(() => {
+		console.log("UseEffect activated!!!");
 
-		// seeds(server) {
-		// 	server.db.loadData({
-		// 		transactions: [
-		// 			{
-		// 				name: "Freelance website",
-		// 				value: 5000,
-		// 				category: "Salário",
-		// 				type: "deposit",
-		// 				createdAt: new Date("2021-08-03 05:05:00"),
-		// 			},
-		// 			{
-		// 				name: "Aluguel",
-		// 				value: 1100,
-		// 				category: "Casa",
-		// 				type: "withdraw",
-		// 				createdAt: new Date("2021-08-05 21:05:12"),
-		// 			},
-		// 		],
-		// 	});
-		// },
+		createServer({
+			models: {
+				transaction: Model,
+			},
 
-		routes() {
-			this.namespace = "api";
-			this.get("/transactions", (schema) => {
-				return schema.all("transaction");
-			});
+			// seeds(server) {
+			// 	server.db.loadData({
+			// 		transactions: [
+			// 			{
+			// 				name: "Freelance website",
+			// 				value: 5000,
+			// 				category: "Salário",
+			// 				type: "deposit",
+			// 				createdAt: new Date("2021-08-03 05:05:00"),
+			// 			},
+			// 			{
+			// 				name: "Aluguel",
+			// 				value: 1100,
+			// 				category: "Casa",
+			// 				type: "withdraw",
+			// 				createdAt: new Date("2021-08-05 21:05:12"),
+			// 			},
+			// 		],
+			// 	});
+			// },
 
-			this.post("/transactions", (schema, request) => {
-				const data = JSON.parse(request.requestBody);
+			routes() {
+				this.namespace = "api";
+				this.get("/transactions", (schema) => {
+					return schema.all("transaction");
+				});
 
-				return schema.create("transaction", data);
-			});
-		},
-	});
+				this.post("/transactions", (schema, request) => {
+					const data = JSON.parse(request.requestBody);
+
+					return schema.create("transaction", data);
+				});
+			},
+		});
+	}, []);
 
 	const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] =
 		useState(false);
