@@ -1,9 +1,10 @@
-import { useTransaction } from "../../useTransaction";
-import { Container } from "./styles";
-import deleteImg from "../../assets/delete.svg";
+import { useTransaction } from '../../hooks/useTransaction'
+import { Container } from './styles'
+import deleteImg from '../../assets/delete.svg'
 
 export function TransactionsTable() {
-	const { transactions, deleteTransaction } = useTransaction();
+	const { transactions, deleteTransaction } =
+		useTransaction()
 
 	return (
 		<div>
@@ -18,28 +19,30 @@ export function TransactionsTable() {
 						</tr>
 					</thead>
 					<tbody>
-						{transactions.map((transaction) => (
+						{transactions.map(transaction => (
 							<tr key={transaction.id}>
 								<td>{transaction.name}</td>
 								<td className={transaction.type}>
-									+{" "}
-									{Intl.NumberFormat("pt-BR", {
-										style: "currency",
-										currency: "BRL",
+									+{' '}
+									{Intl.NumberFormat('pt-BR', {
+										style: 'currency',
+										currency: 'BRL',
 									}).format(transaction.value)}
 								</td>
 								<td>{transaction.category}</td>
 								<td>
-									{Intl.DateTimeFormat("pt-BR").format(
+									{Intl.DateTimeFormat('pt-BR').format(
 										new Date(transaction.createdAt)
 									)}
 								</td>
 								<td>
 									<img
-										className="button"
+										className='button'
 										src={deleteImg}
-										alt="Delete"
-										onClick={() => deleteTransaction(transaction.id)}
+										alt='Delete'
+										onClick={() =>
+											deleteTransaction(transaction.id)
+										}
 									/>
 								</td>
 							</tr>
@@ -48,5 +51,5 @@ export function TransactionsTable() {
 				</table>
 			</Container>
 		</div>
-	);
+	)
 }
