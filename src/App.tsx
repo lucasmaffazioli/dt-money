@@ -1,16 +1,16 @@
-import { createServer, Model } from "miragejs";
-import { Header } from "./components/Header/";
-import { Summary } from "./components/Summary/";
-import { TransactionsTable } from "./components/TransactionsTable";
-import { NewTransactionModal } from "./components/NewTransactionModal";
-import { GlobalStyle } from "./styles/global";
-import { useState } from "react";
-import { TransactionsProvider } from "./useTransaction";
-import { useEffect } from "react";
+import { createServer, Model } from 'miragejs'
+import { Header } from './components/Header/'
+import { Summary } from './components/Summary/'
+import { TransactionsTable } from './components/TransactionsTable'
+import { NewTransactionModal } from './components/NewTransactionModal'
+import { GlobalStyle } from './styles/global'
+import { useState } from 'react'
+import { TransactionsProvider } from './hooks/useTransaction'
+import { useEffect } from 'react'
 
 function App() {
 	useEffect(() => {
-		console.log("UseEffect activated!!!");
+		console.log('UseEffect activated!!!')
 
 		createServer({
 			models: {
@@ -39,35 +39,41 @@ function App() {
 			// },
 
 			routes() {
-				this.namespace = "api";
-				this.get("/transactions", (schema) => {
-					return schema.all("transaction");
-				});
-				this.post("/transactions", (schema, request) => {
-					const data = JSON.parse(request.requestBody);
+				this.namespace = 'api'
+				this.get('/transactions', schema => {
+					return schema.all('transaction')
+				})
+				this.post('/transactions', (schema, request) => {
+					const data = JSON.parse(request.requestBody)
 
-					return schema.create("transaction", data);
-				});
+					return schema.create('transaction', data)
+				})
 
-				this.del("/transactions/:id");
+				this.del('/transactions/:id')
 			},
-		});
-	}, []);
+		})
+	}, [])
 
-	const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] =
-		useState(false);
+	const [
+		isNewTransactionModalOpen,
+		setIsNewTransactionModalOpen,
+	] = useState(false)
 
 	function handleOpenTransactionModal() {
-		setIsNewTransactionModalOpen(true);
+		setIsNewTransactionModalOpen(true)
 	}
 
 	function handleCloseTransactionModal() {
-		setIsNewTransactionModalOpen(false);
+		setIsNewTransactionModalOpen(false)
 	}
 
 	return (
 		<TransactionsProvider>
-			<Header handleOpenTransactionModal={handleOpenTransactionModal}></Header>
+			<Header
+				handleOpenTransactionModal={
+					handleOpenTransactionModal
+				}
+			></Header>
 			<Summary></Summary>
 
 			<NewTransactionModal
@@ -78,7 +84,7 @@ function App() {
 			<TransactionsTable></TransactionsTable>
 			<GlobalStyle />
 		</TransactionsProvider>
-	);
+	)
 }
 
-export default App;
+export default App
