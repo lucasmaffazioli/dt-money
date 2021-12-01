@@ -1,4 +1,9 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, {
+	createContext,
+	useContext,
+	useEffect,
+	useState,
+} from 'react'
 import { api } from '../services/api'
 
 export interface Transaction {
@@ -14,23 +19,33 @@ interface TransactionsProviderProps {
 	children: React.ReactNode
 }
 
-type TransactionInput = Omit<Transaction, 'id' | 'createdAt'>
+type TransactionInput = Omit<
+	Transaction,
+	'id' | 'createdAt'
+>
 
 interface TransactionContextData {
 	transactions: Transaction[]
-	createTransaction: (transaction: TransactionInput) => Promise<void>
+	createTransaction: (
+		transaction: TransactionInput
+	) => Promise<void>
 	deleteTransaction: (id: number) => Promise<void>
 }
 
-export const TransactionsContext = createContext<TransactionContextData>(
-	{} as TransactionContextData
-)
+export const TransactionsContext =
+	createContext<TransactionContextData>(
+		{} as TransactionContextData
+	)
 
-export function TransactionsProvider(props: TransactionsProviderProps) {
-	const [transactions, setTransactions] = useState<Transaction[]>([])
+export function TransactionsProvider(
+	props: TransactionsProviderProps
+) {
+	const [transactions, setTransactions] = useState<
+		Transaction[]
+	>([])
 
 	useEffect(() => {
-		api.get('transactions').then((result) => {
+		api.get('transactions').then(result => {
 			// console.log("Getting transactions context:");
 			// console.log(result.data);
 
@@ -38,7 +53,9 @@ export function TransactionsProvider(props: TransactionsProviderProps) {
 		})
 	}, [])
 
-	async function createTransaction(transactionInput: TransactionInput) {
+	async function createTransaction(
+		transactionInput: TransactionInput
+	) {
 		const response = await api.post('/transactions', {
 			...transactionInput,
 			createdAt: new Date(),
@@ -50,14 +67,20 @@ export function TransactionsProvider(props: TransactionsProviderProps) {
 
 	async function deleteTransaction(id: number) {
 		await api.delete('/transactions/' + id.toString())
-		const newTransactions = transactions.filter((el) => el.id !== id)
+		const newTransactions = transactions.filter(
+			el => el.id !== id
+		)
 
 		setTransactions(newTransactions)
 	}
 
 	return (
 		<TransactionsContext.Provider
-			value={{ transactions, createTransaction, deleteTransaction }}
+			value={{
+				transactions,
+				createTransaction,
+				deleteTransaction,
+			}}
 		>
 			{props.children};
 		</TransactionsContext.Provider>

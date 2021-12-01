@@ -1,7 +1,7 @@
 import entradaImg from "../../assets/income.svg";
 import saidaImg from "../../assets/outcome.svg";
 import totalImg from "../../assets/total.svg";
-import { Transaction, useTransaction } from "../../useTransaction";
+import { Transaction, useTransaction } from "../../hooks/useTransaction";
 import { Container } from "./styles";
 
 export function Summary() {
